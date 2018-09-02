@@ -28,7 +28,7 @@
                   <%= link_to 'My profile', user_path(current_user) %>
                 </li>
                 <li role="separator" class="divider"></li>
-                <li>Logout</li>
+                 <%= link_to 'Logout', logout_path, method: :delete %>
               </ul>
             </li>
           
@@ -40,9 +40,7 @@
             <li>
               <%= link_to 'Login', login_path %>
             </li>
-             <li>
-              <%= link_to 'Logout', logout_path, method: :delete %>
-            </li>
+            
           
 <% end %>
 
