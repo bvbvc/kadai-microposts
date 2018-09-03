@@ -28,4 +28,21 @@ class User < ApplicationRecord
     def feed_microposts
     Micropost.where(user_id: self.following_ids + [self.id])
   end
+  has_many :connections
+#  has_many :reverses_of_connection, class_name: 'Connection', foreign_key: 'micropost_id'
+  has_many :likes, through: :connections, source: :micropost
+#  has_many :liked, through: :reverses_of_connection, source: :user
+ 
+ def like(other_micropost)
+   self.connections.find_or_create_by(micropost_id: other_micropost.id)
+  end
+    
+  def unlike(other_micropost)
+    connection = self.connections.find_by(micropost_id: other_micropost.id)
+    connection.destroy if connection 
+  end
+  
+  def like?(other_micropost)
+    self.likes.include?(other_micropost)
+  end
 end

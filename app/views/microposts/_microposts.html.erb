@@ -15,6 +15,7 @@
           <% if current_user == micropost.user %>
             <%= link_to "Delete", micropost, method: :delete, data: { confirm: "You sure?" }, class: 'btn btn-danger btn-xs' %>
           <% end %>
+          <%= render 'connections/like_button.html.erb', micropost: micropost %>
         </div>
       </div>
     </li>
